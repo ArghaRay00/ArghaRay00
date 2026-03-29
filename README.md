@@ -1,86 +1,139 @@
 ### Hey, I'm Argha
 
-Full-stack engineer at **Motorola Solutions**. I build enterprise backend systems, internal developer tools, and side projects across the stack.
+Full-stack engineer with 9+ years building enterprise systems, internal tools, and side projects. Currently at **Motorola Solutions** working on authorization services, deployment automation, and telecom platforms.
+
+I write Java, C#, TypeScript, Python, and Bash professionally. On weekends I build things in NestJS, React, Go, and whatever else catches my attention.
 
 ---
 
-#### Currently
+### Work — Motorola Solutions
 
-- Building an **authorization service** (Java 17, Spring Boot, PostgreSQL) — role-based permissions with 2-bit hex-encoded rulesets, 6 roles x 35+ resource types, 666+ API integration tests across 22 modules
-- Built a **universal JAR deployer** — 2,100-line bash tool for automated deployments via SSH jump servers. Handles locking, rollback, health checks, dry-run, multi-user detection. Used by 28+ developers on shared test servers
-- Hacking on **[Globo](https://github.com/golden-screen)** — a TVOD streaming platform (NestJS + PostgreSQL + React 19). Designed the home feed API with grouped endpoints, in-memory caching, personalization layer, 98 tests
+**Authorization Service** — Java 17, Spring Boot, PostgreSQL
+- Built the role-based permission system — 6 roles, 35+ resource types, 2-bit hex-encoded rulesets (7 operations per permission)
+- Wrote the agency provisioning pipeline — JSON transformation utility that reads permission matrices and INSERTs into ROLES + PERMISSIONS tables with transaction management
+- Created `KnJsonTransformationUtility`, `KnResourceTypeMapper` (36 resource type → integer code mappings), `KnPermissionDAO` (7 SELECT queries + MERGE, 19 params)
+- Added isViewable/isEditable fields across the full stack — entity, DAO, DTO, service, with server-side filtering (returns null for non-viewable, 4 call sites with null checks)
+- Wrote **666+ API integration tests** across 22 modules covering all 20 POST endpoints. Full auth matrix verification (6 roles x 35 resources = 210 cells). Input validation, pagination, concurrency, security, business logic, idempotency
+- Fixed the Maven deploy pipeline — resolved invalid Spring Boot dependency version (3.5.4 doesn't exist), 10 PRs merged to restore CI/CD
+
+**Universal JAR Deployer** — Bash, 2,100+ lines
+- Built a deployment tool used by 28+ developers sharing test servers. Solves the coordination chaos of manual SCP + restart cycles that was costing ~250 developer-hours/week
+- 14 commands: deploy, rollback, status, logs, diff, ssh, info, diag, check, lock, unlock, lock-status, history, list
+- Per-user timestamped backups, auto-lock on deploy with TTL, health checks (URL or port-based) with auto-rollback on failure, dry-run mode, DGlogs application log support, multi-user detection, update check against shared directory
+- Designed the incremental prompt architecture (9-step build sequence) so the entire tool is reproducible from scratch
+
+**DeployBot** — Python, Flask, Cloud Run
+- Designed a Google Chat deployment bot with interactive card UI, deployment locks, SSH executor via Paramiko jump chains, audit logging to Google Sheets. Proposed to replace the manual coordination overhead
+
+**CAT Requests & Approvals** — Java, Spring Boot
+- Built paginated list API for the Central Admin Tool — `GET /api/requests/list` with filtering, sorting, search across inbound approvals and outbound requests
+- Created 6 new Java classes (DTOs, service layer, REST controller), designed the request expiration scheduler (Spring @Scheduled), wrote 18 unit tests across 3 test files
+- Implemented external users API with server-side pagination (OFFSET/LIMIT/COUNT/LIKE in SQL), field mapping from AuthZ service entities to CAT DTOs, epoch-to-ISO timestamp conversion
+
+**OnePortal** — Angular, ASP.NET Core, SQL Server
+- Telecom management platform — 28 API controllers, 90+ entity models, Okta JWT+JWE auth, Salesforce/MVNO integrations across 6 carriers
+- Worked on webhook design for contract lifecycle, module federation investigation for cross-domain cookie auth, Broadcast Channel API for inter-app communication
+- Contributed to patent analysis — identified 7 patentable innovations including multi-zone device cloning with selective cross-association
+
+**MOTOTRBO Device Management** — AWS Lambda, TypeScript, MQTT, DynamoDB
+- Device cloud services — 64 Lambda functions, AWS IoT Core with MQTT topic routing, device shadow-based configuration sync, X.509 certificate generation
+- Built Python scripts for CloudWatch log extraction by entity ID, subscriber status mapping, connection pool analysis dashboards
+
+**Other work**
+- Ran a **2-day Agentic Engineering workshop** for the team — context engineering, prompt patterns, MCP servers, custom agents, live coding, deployer demo
+- Designed **15 Google Workspace Studio agent blueprints** — PR digest, incident triage, standup generator, Jira summarizer, smart inbox organizer, release notes generator
+- Built an **AI/ML tooling pitch** with React dashboard showing 90%+ cost savings vs commercial APIs for 500 employees. Recommended Qwen 3.5 2B, evaluated Unsloth/LLaMA-Factory/vLLM/MLX
+- Automated **Jira-to-Google Chat workflows** — real-time ticket field change notifications, missing Target End Date reports, team reassignment alerts (saving 2.5-5 hrs/week)
+- Handled **production incidents** — SQL Server connection pool debugging, .NET 6 to 8 migration SSL issues, script bundling errors, JSON deserialization fixes
 
 ---
 
-#### Work at Motorola Solutions
+### Side project — Globo
 
-- **AuthZ Service** — Agency provisioning, JSON transformation utility, isViewable/isEditable fields across the stack, ICD spec alignment with entity types and relation mappings
-- **CAT Requests & Approvals** — Spring Boot paginated list API with filtering, sorting, search for the Central Admin Tool
-- **OnePortal** — Angular + ASP.NET Core telecom management platform. 28 API controllers, 90+ entity models, Okta auth, Salesforce/MVNO integrations. Webhook design for contract lifecycle. Identified 7 patentable innovations
-- **MOTOTRBO Device Management** — Device cloud services, MQTT topic routing, AWS Lambda handlers
-- **CI/CD Pipeline Fixes** — Fixed Maven deploy pipeline, resolved Spring Boot dependency conflicts, 10 PRs to restore builds
-- **DeployBot Proposal** — Designed a Google Chat deployment bot (Python/Flask on Cloud Run) with interactive cards, deployment locks, audit logging
-- **Automation** — Jira-to-Google Chat notifications, Google Workspace Studio agent blueprints (15 no-code AI agent designs)
-- **Agentic Engineering Workshop** — Ran a 2-day internal workshop: context engineering, prompt patterns, MCP servers, custom agents, live coding
+**[Globo](https://github.com/golden-screen)** — a TVOD streaming platform for the South Indian diaspora. NestJS + PostgreSQL backend, React 19 frontend.
+
+- Designed the home feed API architecture — evaluated 3 approaches, selected grouped APIs (4 endpoints) with in-memory TTL caching and personalization layer
+- Built 9 database entities with migrations (movies, genres, filmmakers, pricing, geo-availability, marquee ads, tickets), feed service with 5 rail queries, search with ILIKE across title/synopsis/metadata, discover with pagination + filters
+- Seeded with 12 South Indian movies (Tamil + Telugu), regional pricing for US/IN/GB, marquee ads
+- 98 tests, 10 PRs, TDD throughout. Currently working on viewer profile refactor (separating auth from domain profiles per reviewer feedback)
 
 ---
 
-#### Experiments & deep dives over the years
+### Side project — ArghaTrade (in progress)
 
-- Designed a **distributed key-value store** from scratch
-- Built a **C# load balancer** implementation
-- Explored **concurrent programming** in C# — async patterns, web APIs with pagination
-- **Module Federation** with Angular — cross-domain cookie auth, dynamic remote loading, Broadcast Channel API for inter-app communication
-- **Okta integration** — transitioning client-side to server-side auth in ASP.NET Core + Angular
-- **Protocol Buffers** in .NET 6 API + Angular
-- Built a **database connection pool analysis dashboard** — CloudWatch log ingestion, SQL monitoring queries
-- **Python scripting** — API authentication pipelines, AWS CloudWatch log extraction by entity ID, subscription data processing
-- **Event deduplication system** design with Go and Redis
-- Explored **Cloudflare Workers**, **tscircuit**, **fine-tuning open-source models**
-- Learning **LLMs and custom agents** — building tools with context engineering
+Systematic trading system for Indian markets (NSE).
+
+- Architecture: Pure-math ORB scanner → LLM veto (1-3 calls/day) → risk manager → Kite executor → SQLite journal → autoresearch loop that rewrites scanner code (not just parameters)
+- Walk-Forward Efficiency as the frozen evaluation metric
+- Research sources: microsoft/RD-Agent+Qlib, Open-Finance-Lab/AgenticTrading, jugaad-data, FinMem
+- Timeline: paper trading Jun-Aug 2026, live equity intraday Sep 2026
 
 ---
 
-#### GitHub projects
+### Side project — VastuDrishti (planned)
+
+AR-based Vastu auditor for Android.
+
+- Tech: Kotlin + ARCore + ML Kit + Claude API
+- Camera scans rooms, overlays AR bounding boxes (green/red) with Vastu compliance scores
+- Targeting the Indian diaspora — freemium model
+- Build starts June 2026
+
+---
+
+### Experiments & deep dives
+
+- **Distributed key-value store** — designed from scratch, studied Dynamo-style gossip protocols
+- **C# load balancer** — built a working implementation
+- **Concurrent programming in C#** — async patterns, paginated web APIs, connection pool analysis
+- **Angular Module Federation** — cross-domain cookie auth, dynamic remote loading, Broadcast Channel API for inter-app communication
+- **Okta integration** — transitioned client-side to server-side auth in ASP.NET Core + Angular
+- **Protocol Buffers** — implemented in .NET 6 API + Angular frontend
+- **FLIPMed** — medical appointment booking app (early project)
+- **Multi-platform cab booking PWA** — explored PWA patterns
+- **Event deduplication system** — designed with Go + Redis
+- **Cloudflare Workers**, **tscircuit**, **fine-tuning open-source LLMs** — ongoing exploration
+- **Personal finance automation** — designing unified dashboard for PPF, PF, stocks, MF with automated signals
+
+---
+
+### GitHub projects
 
 | Project | What | Tech |
 |---------|------|------|
-| [OnlineExam](https://github.com/ArghaRay00/OnlineExam) | Online exam system — 3-tier architecture, admin panel, auto-grading | ASP.NET MVC 5, EF6, SQL Server |
-| [mean-auth-starter](https://github.com/ArghaRay00/mean-auth-starter) | Full-stack JWT auth with route guards, interceptors, email | MongoDB, Express, Angular 6, Node.js |
-| [dotnet-ecommerce-api](https://github.com/ArghaRay00/dotnet-ecommerce-api) | Product catalog API with Clean Architecture | .NET 5, EF Core, SQLite, Swagger |
-| [home-warranty-dashboard](https://github.com/ArghaRay00/home-warranty-dashboard) | Warranty admin dashboard with Yelp vendor search | Angular 8, Material, Azure .NET |
-| [snake-and-ladder-csharp](https://github.com/ArghaRay00/snake-and-ladder-csharp) | LLD exercise — configurable board, chaining, queue-based turns | C#, .NET Core |
-| [angular-sse-demo](https://github.com/ArghaRay00/angular-sse-demo) | Server-Sent Events — real-time data push over plain HTTP | Angular 14, Node.js |
-| [spring-mvc-rest-crud](https://github.com/ArghaRay00/spring-mvc-rest-crud) | REST API with DAO pattern — no Spring Boot, all manual config | Spring MVC, JDBC, MySQL |
-| [hyperledger-mortgage-ui](https://github.com/ArghaRay00/hyperledger-mortgage-ui) | Blockchain ledger viewer for mortgage transactions (3 Fabric channels) | Angular 5, Material, Hyperledger |
-| [mortgage-ledger-ui](https://github.com/ArghaRay00/mortgage-ledger-ui) | Static blockchain ledger visualization — 8-stage mortgage workflow | Angular 5, Material |
-| [ionic-google-maps-poc](https://github.com/ArghaRay00/ionic-google-maps-poc) | Geolocation, place autocomplete, geocoding for mobile | Ionic 3, Angular, Google Maps API |
-| [ExpenseManager](https://github.com/ArghaRay00/ExpenseManager) | Expense tracker with DI, repository pattern, antiforgery middleware | ASP.NET Core 2.1, EF Core |
-| [node-mysql-scaffolding](https://github.com/ArghaRay00/node-mysql-scaffolding) | Backend boilerplate with JWT auth and auto-seeding | Node.js, Express, MySQL |
+| [OnlineExam](https://github.com/ArghaRay00/OnlineExam) | Online exam system — 3-tier architecture, admin panel, auto-grading, reports | ASP.NET MVC 5, EF6, SQL Server |
+| [mean-auth-starter](https://github.com/ArghaRay00/mean-auth-starter) | Full-stack JWT auth — signup, login, route guards, interceptors, email | MongoDB, Express, Angular 6, Node.js |
+| [dotnet-ecommerce-api](https://github.com/ArghaRay00/dotnet-ecommerce-api) | Product catalog API — Clean Architecture, seed data, Swagger | .NET 5, EF Core, SQLite |
+| [home-warranty-dashboard](https://github.com/ArghaRay00/home-warranty-dashboard) | Warranty admin dashboard — Yelp vendor search, assignment workflow | Angular 8, Material, Azure .NET |
+| [snake-and-ladder-csharp](https://github.com/ArghaRay00/snake-and-ladder-csharp) | LLD exercise — configurable board, chaining logic, queue-based turns | C#, .NET Core |
+| [angular-sse-demo](https://github.com/ArghaRay00/angular-sse-demo) | Server-Sent Events — real-time push over plain HTTP | Angular 14, Node.js |
+| [spring-mvc-rest-crud](https://github.com/ArghaRay00/spring-mvc-rest-crud) | REST API — DAO pattern, JDBC template, no Spring Boot, all manual config | Spring MVC, MySQL |
+| [hyperledger-mortgage-ui](https://github.com/ArghaRay00/hyperledger-mortgage-ui) | Blockchain ledger viewer — 3 Hyperledger Fabric channels | Angular 5, Material |
+| [mortgage-ledger-ui](https://github.com/ArghaRay00/mortgage-ledger-ui) | Static ledger visualization — 8-stage mortgage workflow | Angular 5, Material |
+| [ionic-google-maps-poc](https://github.com/ArghaRay00/ionic-google-maps-poc) | Geolocation, place autocomplete, geocoding for mobile | Ionic 3, Google Maps API |
+| [ExpenseManager](https://github.com/ArghaRay00/ExpenseManager) | Expense tracker — DI, repository pattern, antiforgery middleware | ASP.NET Core 2.1, EF Core |
+| [node-mysql-scaffolding](https://github.com/ArghaRay00/node-mysql-scaffolding) | Backend boilerplate — JWT auth, auto-seeding | Node.js, Express, MySQL |
 | [solid-principles-csharp](https://github.com/ArghaRay00/solid-principles-csharp) | SOLID principles — before/after refactoring examples | C#, .NET Core |
-| [interview-notes](https://github.com/ArghaRay00/interview-notes) | 3,000+ lines of coding interview prep — DSA heuristics, patterns | Markdown |
-| [hello-go](https://github.com/ArghaRay00/hello-go) | First Go program | Go |
+| [interview-notes](https://github.com/ArghaRay00/interview-notes) | 3,000+ lines of DSA heuristics, patterns, problem-solving strategies | Markdown |
 
 ---
 
-#### Tech
+### Tech
 
-**Languages** — Java, C#, TypeScript, JavaScript, Python, Go, SQL, Bash
+**Languages** — Java, C#, TypeScript, JavaScript, Python, Bash, Go, Kotlin, SQL
 
-**Backend** — Spring Boot, ASP.NET Core, ASP.NET MVC, NestJS, Express, Entity Framework (6 + Core), TypeORM, Hibernate
+**Backend** — Spring Boot, ASP.NET Core, ASP.NET MVC 5, NestJS, Express, Entity Framework (6 + Core), TypeORM, Spring JDBC
 
-**Frontend** — Angular (5–17), React 19, Tailwind, Angular Material, RxJS, Ionic
+**Frontend** — Angular (5–19), React 19, Ionic, Tailwind, Angular Material, RxJS
 
-**Data** — PostgreSQL, MongoDB, MySQL, SQL Server, SQLite, Redis
+**Data** — PostgreSQL, MongoDB, MySQL, SQL Server, SQLite, DynamoDB, Redis, Elasticsearch
 
-**Cloud & Infra** — AWS (Lambda, CloudWatch, EC2, S3), Azure DevOps, Docker, Nginx, Cloudflare Workers
+**Cloud** — AWS (Lambda, IoT Core, CloudWatch, S3, EC2, API Gateway, DynamoDB), Azure DevOps
 
-**Auth** — JWT, Okta, Passport.js, bcrypt, role-based access control (RBAC)
+**Infra** — Docker, Podman, Nginx, Serverless Framework, Cloudflare Workers
 
-**Tools** — Git, Maven, npm, Webpack, Module Federation, Protocol Buffers, Swagger/OpenAPI
+**Auth** — JWT, Okta (JWT+JWE), Passport.js, bcrypt, RBAC, X.509 certificates
 
----
+**AI/ML** — Claude API, Qwen, vLLM, MLX, Unsloth, LLaMA-Factory, ARCore, ML Kit
 
-#### GATE CSE
-
-Prepared for GATE Computer Science (2018–2021). Maintain a [3,000-line interview prep doc](https://github.com/ArghaRay00/interview-notes) covering problem-solving heuristics, DSA patterns, dynamic programming, backtracking, and complexity analysis.
+**Tools** — Git, Maven, npm, Webpack, Module Federation, Protocol Buffers, Swagger, Hangfire
