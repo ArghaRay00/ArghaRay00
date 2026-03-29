@@ -83,6 +83,7 @@ AR-based Vastu auditor for Android.
 
 ### Experiments & deep dives
 
+- **Legacy .NET modernization** — rewrote [OnlineExam](https://github.com/ArghaRay00/OnlineExam) from .NET Framework 4.5.1 (ASP.NET MVC 5, EF6, SQL Server, plaintext passwords, no DI) to .NET 9 (Clean Architecture, Carter, MediatR, EF Core 9, PostgreSQL, JWT, BCrypt, Serilog, Scalar). 17 entities consolidated to 11, zero tests to xUnit, GitHub Actions CI
 - **Distributed key-value store** — designed from scratch, studied Dynamo-style gossip protocols
 - **C# load balancer** — built a working implementation
 - **Concurrent programming in C#** — async patterns, paginated web APIs, connection pool analysis
@@ -101,7 +102,7 @@ AR-based Vastu auditor for Android.
 
 | Project | What | Tech |
 |---------|------|------|
-| [OnlineExam](https://github.com/ArghaRay00/OnlineExam) | Online exam system — 3-tier architecture, admin panel, auto-grading, reports | ASP.NET MVC 5, EF6, SQL Server |
+| [OnlineExam](https://github.com/ArghaRay00/OnlineExam) | Online exam system — modernized from .NET Framework 4.5.1 to .NET 9. Clean Architecture, Carter, MediatR, JWT, BCrypt, EF Core, PostgreSQL. 20+ REST endpoints. Original preserved in v1-legacy branch | .NET 9, EF Core 9, Carter, MediatR, PostgreSQL |
 | [mean-auth-starter](https://github.com/ArghaRay00/mean-auth-starter) | Full-stack JWT auth — signup, login, route guards, interceptors, email | MongoDB, Express, Angular 6, Node.js |
 | [dotnet-ecommerce-api](https://github.com/ArghaRay00/dotnet-ecommerce-api) | Product catalog API — Clean Architecture, seed data, Swagger | .NET 5, EF Core, SQLite |
 | [home-warranty-dashboard](https://github.com/ArghaRay00/home-warranty-dashboard) | Warranty admin dashboard — Yelp vendor search, assignment workflow | Angular 8, Material, Azure .NET |
@@ -122,7 +123,7 @@ AR-based Vastu auditor for Android.
 
 **Languages** — Java, C#, TypeScript, JavaScript, Python, Bash, Go, Kotlin, SQL
 
-**Backend** — Spring Boot, ASP.NET Core, ASP.NET MVC 5, NestJS, Express, Entity Framework (6 + Core), TypeORM, Spring JDBC
+**Backend** — Spring Boot, ASP.NET Core 9, ASP.NET MVC 5, NestJS, Express, Entity Framework (6 + Core 9), TypeORM, Spring JDBC, Carter, MediatR
 
 **Frontend** — Angular (5–19), React 19, Ionic, Tailwind, Angular Material, RxJS
 
@@ -136,4 +137,4 @@ AR-based Vastu auditor for Android.
 
 **AI/ML** — Claude API, Qwen, vLLM, MLX, Unsloth, LLaMA-Factory, ARCore, ML Kit
 
-**Tools** — Git, Maven, npm, Webpack, Module Federation, Protocol Buffers, Swagger, Hangfire
+**Tools** — Git, Maven, npm, Webpack, Module Federation, Protocol Buffers, Swagger/Scalar, Hangfire, Serilog, FluentValidation, GitHub Actions
