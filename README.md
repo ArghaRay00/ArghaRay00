@@ -48,36 +48,11 @@ I write Java, C#, TypeScript, Python, and Bash professionally. On weekends I bui
 
 ---
 
-### Side project — Globo
+### Side projects
 
-**[Globo](https://github.com/golden-screen)** — a TVOD streaming platform for the South Indian diaspora. NestJS + PostgreSQL backend, React 19 frontend.
+**[Streaming platform](https://globo.argha.dev)** — Currently building a TVOD streaming platform. NestJS + PostgreSQL backend, React frontend, HLS video playback via Shaka Player, reverse proxy architecture. Designed the full streaming pipeline including DRM strategy, CDN delivery, and content encoding.
 
-- Designed the home feed API architecture — evaluated 3 approaches, selected grouped APIs (4 endpoints) with in-memory TTL caching and personalization layer
-- Built 9 database entities with migrations (movies, genres, filmmakers, pricing, geo-availability, marquee ads, tickets), feed service with 5 rail queries, search with ILIKE across title/synopsis/metadata, discover with pagination + filters
-- Seeded with 12 South Indian movies (Tamil + Telugu), regional pricing for US/IN/GB, marquee ads
-- 98 tests, 10 PRs, TDD throughout. Currently working on viewer profile refactor (separating auth from domain profiles per reviewer feedback)
-
----
-
-### Side project — ArghaTrade (in progress)
-
-Systematic trading system for Indian markets (NSE).
-
-- Architecture: Pure-math ORB scanner → LLM veto (1-3 calls/day) → risk manager → Kite executor → SQLite journal → autoresearch loop that rewrites scanner code (not just parameters)
-- Walk-Forward Efficiency as the frozen evaluation metric
-- Research sources: microsoft/RD-Agent+Qlib, Open-Finance-Lab/AgenticTrading, jugaad-data, FinMem
-- Timeline: paper trading Jun-Aug 2026, live equity intraday Sep 2026
-
----
-
-### Side project — VastuDrishti (planned)
-
-AR-based Vastu auditor for Android.
-
-- Tech: Kotlin + ARCore + ML Kit + Claude API
-- Camera scans rooms, overlays AR bounding boxes (green/red) with Vastu compliance scores
-- Targeting the Indian diaspora — freemium model
-- Build starts June 2026
+**Other things I'm working on** — A systematic trading system for Indian equity markets, and an AR-based mobile app. Both in early stages.
 
 ---
 
