@@ -1,115 +1,81 @@
 ### Hey, I'm Argha
 
-Full-stack engineer with 9+ years building enterprise systems, internal tools, and side projects. Currently at **Motorola Solutions** working on authorization services, deployment automation, and telecom platforms.
+Software engineer in Bangalore. Nine years of building backend systems that actually run in production — mostly at [Motorola Solutions](https://www.motorolasolutions.com/), where I work on the infrastructure behind their push-to-talk platform.
 
-I write Java, C#, TypeScript, Python, and Bash professionally. On weekends I build things in NestJS, React, Go, and whatever else catches my attention.
+I care about systems that are reliable, codebases that are honest, and tools that make other people's work easier. I write Java, TypeScript, Python, and C# during the week. On nights and weekends, I build things that probably shouldn't exist but do anyway.
 
----
+Lately I've been spending a lot of time thinking about agent engineering — the layer between AI models and the real world. How do you give an agent memory? How does it know when to speak and when to listen? How do you make it feel less like a chatbot and more like someone who actually knows you?
 
-### Work — Motorola Solutions
+I don't have all the answers, but I'm building my way toward them.
 
-**Authorization Service** — Java 17, Spring Boot, PostgreSQL
-- Built the role-based permission system — 6 roles, 35+ resource types, 2-bit hex-encoded rulesets (7 operations per permission)
-- Wrote the agency provisioning pipeline — JSON transformation utility that reads permission matrices and INSERTs into ROLES + PERMISSIONS tables with transaction management
-- Created `KnJsonTransformationUtility`, `KnResourceTypeMapper` (36 resource type → integer code mappings), `KnPermissionDAO` (7 SELECT queries + MERGE, 19 params)
-- Added isViewable/isEditable fields across the full stack — entity, DAO, DTO, service, with server-side filtering (returns null for non-viewable, 4 call sites with null checks)
-- Wrote **666+ API integration tests** across 22 modules covering all 20 POST endpoints. Full auth matrix verification (6 roles x 35 resources = 210 cells). Input validation, pagination, concurrency, security, business logic, idempotency
-- Fixed the Maven deploy pipeline — resolved invalid Spring Boot dependency version (3.5.4 doesn't exist), 10 PRs merged to restore CI/CD
-
-**Universal JAR Deployer** — Bash, 2,100+ lines
-- Built a deployment tool used by 28+ developers sharing test servers. Solves the coordination chaos of manual SCP + restart cycles that was costing ~250 developer-hours/week
-- 14 commands: deploy, rollback, status, logs, diff, ssh, info, diag, check, lock, unlock, lock-status, history, list
-- Per-user timestamped backups, auto-lock on deploy with TTL, health checks (URL or port-based) with auto-rollback on failure, dry-run mode, DGlogs application log support, multi-user detection, update check against shared directory
-- Designed the incremental prompt architecture (9-step build sequence) so the entire tool is reproducible from scratch
-
-**DeployBot** — Python, Flask, Cloud Run
-- Designed a Google Chat deployment bot with interactive card UI, deployment locks, SSH executor via Paramiko jump chains, audit logging to Google Sheets. Proposed to replace the manual coordination overhead
-
-**CAT Requests & Approvals** — Java, Spring Boot
-- Built paginated list API for the Central Admin Tool — `GET /api/requests/list` with filtering, sorting, search across inbound approvals and outbound requests
-- Created 6 new Java classes (DTOs, service layer, REST controller), designed the request expiration scheduler (Spring @Scheduled), wrote 18 unit tests across 3 test files
-- Implemented external users API with server-side pagination (OFFSET/LIMIT/COUNT/LIKE in SQL), field mapping from AuthZ service entities to CAT DTOs, epoch-to-ISO timestamp conversion
-
-**OnePortal** — Angular, ASP.NET Core, SQL Server
-- Telecom management platform — 28 API controllers, 90+ entity models, Okta JWT+JWE auth, Salesforce/MVNO integrations across 6 carriers
-- Worked on webhook design for contract lifecycle, module federation investigation for cross-domain cookie auth, Broadcast Channel API for inter-app communication
-- Contributed to patent analysis — identified 7 patentable innovations including multi-zone device cloning with selective cross-association
-
-**MOTOTRBO Device Management** — AWS Lambda, TypeScript, MQTT, DynamoDB
-- Device cloud services — 64 Lambda functions, AWS IoT Core with MQTT topic routing, device shadow-based configuration sync, X.509 certificate generation
-- Built Python scripts for CloudWatch log extraction by entity ID, subscriber status mapping, connection pool analysis dashboards
-
-**Other work**
-- Ran a **2-day Agentic Engineering workshop** for the team — context engineering, prompt patterns, MCP servers, custom agents, live coding, deployer demo
-- Designed **15 Google Workspace Studio agent blueprints** — PR digest, incident triage, standup generator, Jira summarizer, smart inbox organizer, release notes generator
-- Built an **AI/ML tooling pitch** with React dashboard showing 90%+ cost savings vs commercial APIs for 500 employees. Recommended Qwen 3.5 2B, evaluated Unsloth/LLaMA-Factory/vLLM/MLX
-- Automated **Jira-to-Google Chat workflows** — real-time ticket field change notifications, missing Target End Date reports, team reassignment alerts (saving 2.5-5 hrs/week)
-- Handled **production incidents** — SQL Server connection pool debugging, .NET 6 to 8 migration SSL issues, script bundling errors, JSON deserialization fixes
+[argha.dev](https://argha.dev) · [LinkedIn](https://www.linkedin.com/in/argha-ray/) · [X](https://x.com/argharay94)
 
 ---
 
-### Side projects
+### What I do at work
 
-**[Streaming platform](https://globo.argha.dev)** — Currently building a TVOD streaming platform. NestJS + PostgreSQL backend, React frontend, HLS video playback via Shaka Player, reverse proxy architecture. Designed the full streaming pipeline including DRM strategy, CDN delivery, and content encoding.
+**Authorization & Access Control** — I own the RBAC microservice for Motorola's Kodiak platform. Java, Spring Boot, PostgreSQL. Role-permission management for their entire unified communications system. I wrote the test suite, refactored the service boundaries, and I'm the person people come to when something in the permission layer doesn't work right.
 
-**Other things I'm working on** — A systematic trading system for Indian equity markets, and an AR-based mobile app. Both in early stages.
+**PostgreSQL Infrastructure** — Currently helping architect a highly available PostgreSQL setup for storing 60TB of call recordings. Patroni for failover, pgEdge for cross-site replication, pgBackRest for backups. I'm building the tooling and running the proof of concept.
 
----
+**Telecom Platform** — Before the current role, I spent three years on OnePortal — Motorola's multi-tenant provisioning portal. Full-stack across Angular and ASP.NET Core. Device management, carrier integrations across six MVNOs, Okta auth, webhook systems, certificate management. I joined the team knowing nothing about the codebase and ended up owning large parts of it.
 
-### Experiments & deep dives
+**Device Cloud** — Worked on the serverless device management layer — TypeScript on AWS Lambda, IoT Core for MQTT device shadows, DynamoDB. Investigated a production outage where I traced the real root cause after the original analysis had been accepted for months.
 
-- **Legacy .NET modernization** — rewrote [OnlineExam](https://github.com/ArghaRay00/OnlineExam) from .NET Framework 4.5.1 (ASP.NET MVC 5, EF6, SQL Server, plaintext passwords, no DI) to .NET 9 (Clean Architecture, Carter, MediatR, EF Core 9, PostgreSQL, JWT, BCrypt, Serilog, Scalar). 17 entities consolidated to 11, zero tests to xUnit, GitHub Actions CI
-- **Distributed key-value store** — designed from scratch, studied Dynamo-style gossip protocols
-- **C# load balancer** — built a working implementation
-- **Concurrent programming in C#** — async patterns, paginated web APIs, connection pool analysis
-- **Angular Module Federation** — cross-domain cookie auth, dynamic remote loading, Broadcast Channel API for inter-app communication
-- **Okta integration** — transitioned client-side to server-side auth in ASP.NET Core + Angular
-- **Protocol Buffers** — implemented in .NET 6 API + Angular frontend
-- **FLIPMed** — medical appointment booking app (early project)
-- **Multi-platform cab booking PWA** — explored PWA patterns
-- **Event deduplication system** — designed with Go + Redis
-- **Cloudflare Workers**, **tscircuit**, **fine-tuning open-source LLMs** — ongoing exploration
-- **Personal finance automation** — designing unified dashboard for PPF, PF, stocks, MF with automated signals
+**Internal tools** — I tend to build tools when I see friction. A Bash deployment tool that the team now uses daily. A Jira-to-Chat notification system. A workshop on agentic engineering that I ran for the team. Small things that add up.
 
 ---
 
-### GitHub projects
+### What I build outside work
 
-| Project | What | Tech |
-|---------|------|------|
-| [OnlineExam](https://github.com/ArghaRay00/OnlineExam) | Online exam system — modernized from .NET Framework 4.5.1 to .NET 9. Clean Architecture, Carter, MediatR, JWT, BCrypt, EF Core, PostgreSQL. 20+ REST endpoints. Original preserved in v1-legacy branch | .NET 9, EF Core 9, Carter, MediatR, PostgreSQL |
-| [mean-auth-starter](https://github.com/ArghaRay00/mean-auth-starter) | Full-stack JWT auth — signup, login, route guards, interceptors, email | MongoDB, Express, Angular 6, Node.js |
-| [dotnet-ecommerce-api](https://github.com/ArghaRay00/dotnet-ecommerce-api) | Product catalog API — Clean Architecture, seed data, Swagger | .NET 5, EF Core, SQLite |
-| [home-warranty-dashboard](https://github.com/ArghaRay00/home-warranty-dashboard) | Warranty admin dashboard — Yelp vendor search, assignment workflow | Angular 8, Material, Azure .NET |
-| [snake-and-ladder-csharp](https://github.com/ArghaRay00/snake-and-ladder-csharp) | LLD exercise — configurable board, chaining logic, queue-based turns | C#, .NET Core |
-| [angular-sse-demo](https://github.com/ArghaRay00/angular-sse-demo) | Server-Sent Events — real-time push over plain HTTP | Angular 14, Node.js |
-| [spring-mvc-rest-crud](https://github.com/ArghaRay00/spring-mvc-rest-crud) | REST API — DAO pattern, JDBC template, no Spring Boot, all manual config | Spring MVC, MySQL |
-| [hyperledger-mortgage-ui](https://github.com/ArghaRay00/hyperledger-mortgage-ui) | Blockchain ledger viewer — 3 Hyperledger Fabric channels | Angular 5, Material |
-| [mortgage-ledger-ui](https://github.com/ArghaRay00/mortgage-ledger-ui) | Static ledger visualization — 8-stage mortgage workflow | Angular 5, Material |
-| [ionic-google-maps-poc](https://github.com/ArghaRay00/ionic-google-maps-poc) | Geolocation, place autocomplete, geocoding for mobile | Ionic 3, Google Maps API |
-| [ExpenseManager](https://github.com/ArghaRay00/ExpenseManager) | Expense tracker — DI, repository pattern, antiforgery middleware | ASP.NET Core 2.1, EF Core |
-| [node-mysql-scaffolding](https://github.com/ArghaRay00/node-mysql-scaffolding) | Backend boilerplate — JWT auth, auto-seeding | Node.js, Express, MySQL |
-| [solid-principles-csharp](https://github.com/ArghaRay00/solid-principles-csharp) | SOLID principles — before/after refactoring examples | C#, .NET Core |
-| [interview-notes](https://github.com/ArghaRay00/interview-notes) | 3,000+ lines of DSA heuristics, patterns, problem-solving strategies | Markdown |
+**[Jishu](https://jishu.argha.dev/chat)** — My most ambitious side project. A personal AI agent that runs 24/7 on my VPS, talks to me on Telegram in romanized Bengali, and knows everything about my work and life.
+
+It has a cognitive architecture inspired by Bengali cultural concepts — seven modes of engagement (*Shravan* for listening, *Adda* for casual conversation, *Mantrana* for counsel, *Anusandhan* for research, and more), emotional attunement that reads mood from text patterns, and a self-reflection journal where it reviews its own behavior.
+
+It searches the web autonomously, writes daily reviews, compiles knowledge from raw sources, and learns from conversations other people have with it. The whole thing runs on a single ARM VPS behind a Cloudflare Tunnel. Stack: Python, FastAPI, SearXNG for self-hosted search.
+
+There's a guest chat where you can [talk to Jishu](https://jishu.argha.dev/chat) about me. He's friendly.
+
+**[Streaming platform](https://argha.dev/posts/streaming-video-on-a-zero-dollar-server)** — A TVOD platform for movie rentals. NestJS backend, React frontend, Shaka Player for HLS. Built two versions — self-hosted (zero cost) and Bunny Stream CDN (with per-segment token auth). The architecture was designed so swapping the delivery layer required zero changes to auth, sessions, or the player. I wrote about the journey on my blog.
+
+**[OnlineExam](https://github.com/ArghaRay00/OnlineExam)** — An exam system I wrote in college in .NET Framework 4.5, then rewrote a decade later in .NET 9 with Clean Architecture. Mostly to see how far the ecosystem has come. It's come far.
 
 ---
 
-### Tech
+### Things I've explored
 
-**Languages** — Java, C#, TypeScript, JavaScript, Python, Bash, Go, Kotlin, SQL
+I learn by building. Some of these are finished, some are half-done experiments, some are just me figuring out how something works:
 
-**Backend** — Spring Boot, ASP.NET Core 9, ASP.NET MVC 5, NestJS, Express, Entity Framework (6 + Core 9), TypeORM, Spring JDBC, Carter, MediatR
+- Distributed key-value store (Dynamo-style gossip protocol)
+- Load balancer in C#
+- Event deduplication system in Go + Redis
+- Angular Module Federation for cross-domain auth
+- Protocol Buffers in .NET + Angular
+- Hyperledger Fabric ledger visualization
+- Server-Sent Events for real-time push
+- SOLID principles with before/after refactoring examples
+- Various full-stack starters (MEAN, .NET, Express)
 
-**Frontend** — Angular (5–19), React 19, Ionic, Tailwind, Angular Material, RxJS
+The repos are all here. Some are polished, most are learning artifacts. That's the point.
 
-**Data** — PostgreSQL, MongoDB, MySQL, SQL Server, SQLite, DynamoDB, Redis, Elasticsearch
+---
 
-**Cloud** — AWS (Lambda, IoT Core, CloudWatch, S3, EC2, API Gateway, DynamoDB), Azure DevOps
+### Tech I use
 
-**Infra** — Docker, Podman, Nginx, Serverless Framework, Cloudflare Workers
+**Languages** — Java, TypeScript, Python, C#, Bash, SQL. Others come and go.
 
-**Auth** — JWT, Okta (JWT+JWE), Passport.js, bcrypt, RBAC, X.509 certificates
+**Backend** — Spring Boot, ASP.NET Core, NestJS, FastAPI, Entity Framework, TypeORM
 
-**AI/ML** — Claude API, Qwen, vLLM, MLX, Unsloth, LLaMA-Factory, ARCore, ML Kit
+**Data** — PostgreSQL, SQL Server, DynamoDB, Elasticsearch, Redis, MongoDB
 
-**Tools** — Git, Maven, npm, Webpack, Module Federation, Protocol Buffers, Swagger/Scalar, Hangfire, Serilog, FluentValidation, GitHub Actions
+**Cloud** — AWS (Lambda, IoT Core, S3, DynamoDB), Docker, Cloudflare, GitHub Actions
+
+**Frontend** — Angular, React. I can build UIs but my heart is in the backend.
+
+---
+
+### Let's talk
+
+I'm always happy to chat about backend systems, agent architecture, or whatever you're building. If something here caught your eye — reach out.
+
+[argha.dev](https://argha.dev) · [LinkedIn](https://www.linkedin.com/in/argha-ray/) · [X](https://x.com/argharay94)
