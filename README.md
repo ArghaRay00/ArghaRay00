@@ -4,9 +4,7 @@ Software engineer in Bangalore. Nine years of building backend systems that actu
 
 I care about systems that are reliable, codebases that are honest, and tools that make other people's work easier. I write Java, TypeScript, Python, and C# during the week. On nights and weekends, I build things that probably shouldn't exist but do anyway.
 
-Lately I've been spending a lot of time thinking about agent engineering — the layer between AI models and the real world. How do you give an agent memory? How does it know when to speak and when to listen? How do you make it feel less like a chatbot and more like someone who actually knows you?
-
-I don't have all the answers, but I'm building my way toward them.
+Lately I've been deep into agent engineering — the layer between AI models and the real world. How do you give an agent memory? How does it know when to speak and when to listen? I'm building my way toward answers.
 
 [argha.dev](https://argha.dev) · [LinkedIn](https://www.linkedin.com/in/argha-ray/) · [X](https://x.com/argharay94)
 
@@ -14,68 +12,69 @@ I don't have all the answers, but I'm building my way toward them.
 
 ### What I do at work
 
-**Authorization & Access Control** — I own the RBAC microservice for Motorola's Kodiak platform. Java, Spring Boot, PostgreSQL. Role-permission management for their entire unified communications system. I wrote the test suite, refactored the service boundaries, and I'm the person people come to when something in the permission layer doesn't work right.
+**Authorization & Access Control** · Java, Spring Boot, PostgreSQL — Own the RBAC microservice for Motorola's Kodiak platform. Six roles, thirty-five resource types, hex-encoded permission bitmasks. Wrote the integration test suite, refactored the monolith, built the cross-service integration with [CAT](https://waveoncloud.com/).
 
-**PostgreSQL Infrastructure** — Currently helping architect a highly available PostgreSQL setup for storing 60TB of call recordings. Patroni for failover, pgEdge for cross-site replication, pgBackRest for backups. I'm building the tooling and running the proof of concept.
+**PostgreSQL Infrastructure** · Python, Patroni, pgEdge, pgBackRest — Helping architect a highly available PostgreSQL backend for 60TB of call recordings. Built a Python wrapper for pgBackRest with monitoring and benchmarking. Running the PoC.
 
-**Telecom Platform** — Before the current role, I spent three years on OnePortal — Motorola's multi-tenant provisioning portal. Full-stack across Angular and ASP.NET Core. Device management, carrier integrations across six MVNOs, Okta auth, webhook systems, certificate management. I joined the team knowing nothing about the codebase and ended up owning large parts of it.
+**Kaiser Program** · ASP.NET Core, C#, TypeScript, AWS Lambda, IoT Core — Built WiFi Enterprise certificate management end to end across two repos (OnePortal + Device Cloud Services). Database schema design, S3 storage, certificate lifecycle APIs, IoT topic rules for device-side distribution. Biggest feature I shipped in 2025.
 
-**Device Cloud** — Worked on the serverless device management layer — TypeScript on AWS Lambda, IoT Core for MQTT device shadows, DynamoDB. Investigated a production outage where I traced the real root cause after the original analysis had been accepted for months.
+**Telecom Platform (OnePortal)** · Angular 5→19, ASP.NET Core, SQL Server, AWS — Three years full-stack on Motorola's multi-tenant provisioning portal. Device cloning, carrier transition (Telna → WirelessLogic), webhook integrations, gateway management, notification center, license renewal webhooks, Mototrbo R7 DualMode device support, reseller bulk operations, EVA token authentication, .NET 5→8 migration. Identified seven patent candidates through IPR analysis.
 
-**Internal tools** — I tend to build tools when I see friction. A Bash deployment tool that the team now uses daily. A Jira-to-Chat notification system. A workshop on agentic engineering that I ran for the team. Small things that add up.
+**Device Cloud Services** · TypeScript, AWS Lambda, IoT Core, DynamoDB — Serverless device management layer. Built Lambda handlers for Kaiser certificate distribution, production config rollouts. Independently reinvestigated a major outage and corrected the accepted root cause analysis.
+
+**Internal tools** — A Bash deployment tool the team uses daily (20+ commands, health checks, auto-rollback, golden image management). A Jira-to-Chat notification system. Designed an AYT analytics config service (Java 21, HANA, Kafka). Ran a two-day agentic engineering workshop for the team.
 
 ---
 
 ### What I build outside work
 
-**[Jishu](https://jishu.argha.dev/chat)** — My most ambitious side project. A personal AI agent that runs 24/7 on my VPS, talks to me on Telegram in romanized Bengali, and knows everything about my work and life.
+**[Jishu](https://jishu.argha.dev/chat)** — A 24/7 personal AI agent on my VPS. Talks to me on Telegram in romanized Bengali. Has a cognitive architecture with three layers — core identity (soul, dharma, voice), perception (emotional attunement, life seasons, text signal reading), and cognition (seven Bengali modes of engagement: *Shravan*, *Adda*, *Mantrana*, *Jigyasa*, *Anusandhan*, *Utsav*, *Satarka*).
 
-It has a cognitive architecture inspired by Bengali cultural concepts — seven modes of engagement (*Shravan* for listening, *Adda* for casual conversation, *Mantrana* for counsel, *Anusandhan* for research, and more), emotional attunement that reads mood from text patterns, and a self-reflection journal where it reviews its own behavior.
+Searches the web autonomously via self-hosted SearXNG, writes daily reviews, compiles wiki pages from raw sources, learns from guest conversations. [Talk to him](https://jishu.argha.dev/chat) — he's friendly.
 
-It searches the web autonomously, writes daily reviews, compiles knowledge from raw sources, and learns from conversations other people have with it. The whole thing runs on a single ARM VPS behind a Cloudflare Tunnel. Stack: Python, FastAPI, SearXNG for self-hosted search.
+Stack: Python, FastAPI, SearXNG, APScheduler, Groq Whisper, GitHub Actions CI/CD. Runs on an Oracle ARM VPS behind Cloudflare Tunnel.
 
-There's a guest chat where you can [talk to Jishu](https://jishu.argha.dev/chat) about me. He's friendly.
+**[Streaming platform](https://argha.dev/posts/streaming-video-on-a-zero-dollar-server)** — TVOD movie rental platform. NestJS + React + Shaka Player. Two versions — self-hosted HLS (zero cost) and Bunny Stream CDN (per-segment token auth via Shaka's network engine). Swapping the delivery layer required zero changes to auth, sessions, or the player.
 
-**[Streaming platform](https://argha.dev/posts/streaming-video-on-a-zero-dollar-server)** — A TVOD platform for movie rentals. NestJS backend, React frontend, Shaka Player for HLS. Built two versions — self-hosted (zero cost) and Bunny Stream CDN (with per-segment token auth). The architecture was designed so swapping the delivery layer required zero changes to auth, sessions, or the player. I wrote about the journey on my blog.
+**PrepForge** — Interview prep system. 3,000+ DSA problems with company-wise tagging, system design scenarios, OOD problems. FSRS spaced repetition to surface problems based on forgetting curves. Python + FastAPI + React + SQLite.
 
-**[OnlineExam](https://github.com/ArghaRay00/OnlineExam)** — An exam system I wrote in college in .NET Framework 4.5, then rewrote a decade later in .NET 9 with Clean Architecture. Mostly to see how far the ecosystem has come. It's come far.
+**[OnlineExam](https://github.com/ArghaRay00/OnlineExam)** — Exam system I wrote in college (.NET Framework 4.5), rewrote a decade later in .NET 9 with Clean Architecture. Carter, MediatR, EF Core 9, xUnit, GitHub Actions CI.
 
 ---
 
 ### Things I've explored
 
-I learn by building. Some of these are finished, some are half-done experiments, some are just me figuring out how something works:
+I learn by building. Some finished, some half-done, some just me figuring out how something works:
 
 - Distributed key-value store (Dynamo-style gossip protocol)
 - Load balancer in C#
-- Event deduplication system in Go + Redis
+- Event deduplication in Go + Redis
 - Angular Module Federation for cross-domain auth
 - Protocol Buffers in .NET + Angular
 - Hyperledger Fabric ledger visualization
 - Server-Sent Events for real-time push
-- SOLID principles with before/after refactoring examples
-- Various full-stack starters (MEAN, .NET, Express)
+- SOLID principles with before/after refactoring
 
 The repos are all here. Some are polished, most are learning artifacts. That's the point.
 
 ---
 
-### Tech I use
+### Tech
 
-**Languages** — Java, TypeScript, Python, C#, Bash, SQL. Others come and go.
+**Languages** — Java, TypeScript, Python, C#, Bash, SQL
 
 **Backend** — Spring Boot, ASP.NET Core, NestJS, FastAPI, Entity Framework, TypeORM
 
-**Data** — PostgreSQL, SQL Server, DynamoDB, Elasticsearch, Redis, MongoDB
+**Data** — PostgreSQL, SQL Server, DynamoDB, Elasticsearch, Redis
 
 **Cloud** — AWS (Lambda, IoT Core, S3, DynamoDB), Docker, Cloudflare, GitHub Actions
 
-**Frontend** — Angular, React. I can build UIs but my heart is in the backend.
+**Frontend** — Angular, React — I can build UIs but my heart is in the backend
 
 ---
 
 ### Let's talk
 
-I'm always happy to chat about backend systems, agent architecture, or whatever you're building. If something here caught your eye — reach out.
+I'm always happy to chat about backend systems, agent architecture, or whatever you're building. The full story is at [argha.dev/about](https://argha.dev/about).
 
 [argha.dev](https://argha.dev) · [LinkedIn](https://www.linkedin.com/in/argha-ray/) · [X](https://x.com/argharay94)
