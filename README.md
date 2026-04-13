@@ -28,9 +28,9 @@ Lately I've been deep into agent engineering — the layer between AI models and
 
 ### What I build outside work
 
-**[Jishu](https://jishu.argha.dev/chat)** — A 24/7 personal AI agent on my VPS. Talks to me on Telegram in romanized Bengali. Has a cognitive architecture with three layers — core identity (soul, dharma, voice), perception (emotional attunement, life seasons, text signal reading), and cognition (seven Bengali modes of engagement: *Shravan*, *Adda*, *Mantrana*, *Jigyasa*, *Anusandhan*, *Utsav*, *Satarka*).
+**[Vesper](https://vesper.argha.dev/chat)** — A 24/7 personal AI agent on my VPS. Talks to me on Telegram in romanized Bengali. Has a cognitive architecture with three layers — core identity (soul, dharma, voice), perception (emotional attunement, life seasons, text signal reading), and cognition (seven Bengali modes of engagement: *Shravan*, *Adda*, *Mantrana*, *Jigyasa*, *Anusandhan*, *Utsav*, *Satarka*).
 
-Searches the web autonomously via self-hosted SearXNG, writes daily reviews, compiles wiki pages from raw sources, learns from guest conversations. [Talk to him](https://jishu.argha.dev/chat) — he's friendly.
+Searches the web autonomously via self-hosted SearXNG, writes daily reviews, compiles wiki pages from raw sources, learns from guest conversations. [Talk to him](https://vesper.argha.dev/chat) — she's friendly.
 
 Stack: Python, FastAPI, SearXNG, APScheduler, Groq Whisper, GitHub Actions CI/CD. Runs on an Oracle ARM VPS behind Cloudflare Tunnel.
 
