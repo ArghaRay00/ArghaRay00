@@ -28,7 +28,7 @@ Lately I've been deep into agent engineering — the layer between AI models and
 
 ### What I build outside work
 
-**[Vesper](https://vesper.argha.dev/chat)** — A 24/7 personal AI agent on my VPS. Talks to me on Telegram in romanized Bengali. Has a cognitive architecture with three layers — core identity (soul, dharma, voice), perception (emotional attunement, life seasons, text signal reading), and cognition (seven Bengali modes of engagement: *Shravan*, *Adda*, *Mantrana*, *Jigyasa*, *Anusandhan*, *Utsav*, *Satarka*).
+**[Vesper](https://vesper.argha.dev/chat)** — A 24/7 personalized conversational agent on my VPS, reachable over Telegram. Built on a three-layer cognitive architecture — identity, perception (emotional state, context reading, signal detection), and cognition (seven engagement modes: attentive listening, casual conversation, counsel, curiosity, research, celebration, vigilance).
 
 Searches the web autonomously via self-hosted SearXNG, writes daily reviews, compiles wiki pages from raw sources, learns from guest conversations. [Talk to her](https://vesper.argha.dev/chat) — she's friendly.
 
@@ -78,3 +78,4 @@ The repos are all here. Some are polished, most are learning artifacts. That's t
 I'm always happy to chat about backend systems, agent architecture, or whatever you're building. The full story is at [argha.dev/about](https://argha.dev/about).
 
 [argha.dev](https://argha.dev) · [LinkedIn](https://www.linkedin.com/in/argha-ray/) · [X](https://x.com/argharay94)
+
