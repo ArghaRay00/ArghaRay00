@@ -6,7 +6,7 @@ I care about systems that are reliable, codebases that are honest, and tools tha
 
 Lately I've been deep into agent engineering — the layer between AI models and the real world. How do you give an agent memory? How does it know when to speak and when to listen? I'm building my way toward answers.
 
-[argha.dev](https://argha.dev) · [LinkedIn](https://www.linkedin.com/in/argha-ray/) · [X](https://x.com/argharay94)
+[argha.dev](https://argha.dev) · [LinkedIn](https://www.linkedin.com/in/argha94/) · [X](https://x.com/argharay94)
 
 ---
 
@@ -83,4 +83,4 @@ The repos are all here. Some are polished, most are learning artifacts. That's t
 
 I'm always happy to chat about backend systems, agent architecture, or whatever you're building. The full story is at [argha.dev/about](https://argha.dev/about).
 
-[argha.dev](https://argha.dev) · [LinkedIn](https://www.linkedin.com/in/argha-ray/) · [X](https://x.com/argharay94)
+[argha.dev](https://argha.dev) · [LinkedIn](https://www.linkedin.com/in/argha94/) · [X](https://x.com/argharay94)
