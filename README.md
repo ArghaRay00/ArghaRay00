@@ -34,9 +34,15 @@ Searches the web autonomously via self-hosted SearXNG, writes daily reviews, com
 
 Stack: Python, FastAPI, SearXNG, APScheduler, Groq Whisper, GitHub Actions CI/CD. Runs on an Oracle ARM VPS behind Cloudflare Tunnel.
 
+**[harnesskit](https://github.com/ArghaRay00/harnesskit)** — Open-source agent orchestration framework. Tool registry, permission engine, query loop, context manager with cache-aware compaction, agent spawner, hook system, model router. Three intelligence levels — rule-based (no model, $0), hybrid (local model), full agent (cloud model) — same architecture across all three. Extracted from the patterns I kept rebuilding.
+
+**[jobtrack-autopilot](https://github.com/ArghaRay00/jobtrack-autopilot)** — Gmail-driven job-search autopilot. Haiku classifies recruiter threads, scores JD fit against your profile, detects ghosted threads, generates leave-aware reschedule slots, and drafts replies in your voice into Gmail Drafts (never auto-sends). Telegram preview with inline approve/reject. Runs unattended on a small VPS — flock-guarded sync, idempotent nudges, config-driven persona. Open-sourced after running my own job hunt for months.
+
 **[Streaming platform](https://argha.dev/posts/streaming-video-on-a-zero-dollar-server)** — TVOD movie rental platform. NestJS + React + Shaka Player. Two versions — self-hosted HLS (zero cost) and Bunny Stream CDN (per-segment token auth via Shaka's network engine). Swapping the delivery layer required zero changes to auth, sessions, or the player.
 
 **PrepForge** — Interview prep system. 3,000+ DSA problems with company-wise tagging, system design scenarios, OOD problems. FSRS spaced repetition to surface problems based on forgetting curves. Python + FastAPI + React + SQLite.
+
+**[Jira Ticket Creator](https://github.com/ArghaRay00/jira-ticket-creator)** — Zero-dependency VS Code extension for creating Jira tickets with AI. Single and bulk creation, cookie auth for enterprise Jira behind SSO/IAP. Distributed to my team via GitHub Releases.
 
 **[OnlineExam](https://github.com/ArghaRay00/OnlineExam)** — Exam system I wrote in college (.NET Framework 4.5), rewrote a decade later in .NET 9 with Clean Architecture. Carter, MediatR, EF Core 9, xUnit, GitHub Actions CI.
 
@@ -78,4 +84,3 @@ The repos are all here. Some are polished, most are learning artifacts. That's t
 I'm always happy to chat about backend systems, agent architecture, or whatever you're building. The full story is at [argha.dev/about](https://argha.dev/about).
 
 [argha.dev](https://argha.dev) · [LinkedIn](https://www.linkedin.com/in/argha-ray/) · [X](https://x.com/argharay94)
-
