@@ -71,11 +71,13 @@ The repos are all here. Some are polished, most are learning artifacts. That's t
 
 **Backend** — Spring Boot, ASP.NET Core, NestJS, FastAPI, Entity Framework, TypeORM
 
-**Data** — PostgreSQL, SQL Server, DynamoDB, Elasticsearch, Redis
+**Data** — PostgreSQL, SQL Server, DynamoDB, Elasticsearch, Redis, SQLite
 
-**Cloud** — AWS (Lambda, IoT Core, S3, DynamoDB), Docker, Cloudflare, GitHub Actions
+**Cloud & Infra** — AWS (Lambda, IoT Core, S3, DynamoDB), Docker, Cloudflare (Pages, Tunnel, Access), GitHub Actions, Azure DevOps
 
 **Frontend** — Angular, React — I can build UIs but my heart is in the backend
+
+**Agent Engineering** — Anthropic API (Sonnet/Haiku), Claude Code, MCP servers, prompt engineering, context engineering, tool orchestration, RAG-when-it-actually-helps
 
 ---
 
